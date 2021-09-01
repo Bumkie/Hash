@@ -1,0 +1,22 @@
+import java.util.*;
+
+class Solution {
+    public String solution(String[] participant, String[] completion) {
+        String answer = "";
+        
+        HashMap<String, Integer> hm = new HashMap<>();
+
+        for(String part : participant)
+            hm.put(part, hm.getOrDefault(part, 0) + 1); //중복된 사람이 있으면 value + 1, 없으면 0 + 1
+        
+
+        for(String comp : completion)
+            hm.put(comp, hm.get(comp) - 1); //completion에 있는 키가 participant에 있으면 value - 1
+
+        for(String part : participant){
+            if(hm.get(part) == 1)
+                answer = part;
+        }
+        return answer;
+    }
+}
